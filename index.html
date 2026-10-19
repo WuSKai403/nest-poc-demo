@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今天吃什麼｜鳥巢社午餐投票</title>
+<style>
+  body { font-family: -apple-system, "PingFang TC", "Noto Sans TC", sans-serif; background: #fbfaf7; color: #15181d; margin: 0; padding: 32px 16px; }
+  main { max-width: 520px; margin: 0 auto; }
+  h1 { font-size: 32px; margin: 0 0 8px; }
+  p { color: #5b6270; margin: 0 0 24px; }
+  button { display: flex; justify-content: space-between; width: 100%; padding: 16px 20px; margin-bottom: 12px; font-size: 20px; border: 2px solid #ddd8cf; border-radius: 10px; background: #fff; cursor: pointer; }
+  button:hover { border-color: #2563eb; }
+  .count { color: #2563eb; font-weight: 700; }
+</style>
+</head>
+<body>
+<main>
+  <h1>今天吃什麼？</h1>
+  <p>點一下投票，票數最多的就是今天的午餐。</p>
+  <div id="options"></div>
+</main>
+<script>
+  const options = ['小福拉麵', '公館水源市場', '新生南路滷肉飯', '7-11 隨便吃'];
+  const votes = options.map(() => 0);
+  const box = document.getElementById('options');
+  function render() {
+    box.innerHTML = '';
+    options.forEach((name, i) => {
+      const b = document.createElement('button');
+      b.innerHTML = `<span>${name}</span><span class="count">${votes[i]} 票</span>`;
+      b.onclick = () => { votes[i]++; render(); };
+      box.appendChild(b);
+    });
+  }
+  render();
+</script>
+</body>
+</html>
